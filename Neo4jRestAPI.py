@@ -160,3 +160,44 @@ class Neo4jRestAPI:
 		}
 		page = self.post(url = 'relationship/' + str(rel_id) + '/properties', data = data, headers = headers)
 		return json.loads(page)
+
+	#get single property of relationship
+	def get_rel_prop(self, rel_id, property_name):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+		}
+		page = self.get(url = 'relationship/' + str(rel_id) + '/properties/' + str(property_name), headers = headers)
+		return json.loads(page)
+
+	#set single propery of relationship
+	def set_rel_prop(self, rel_id, property_name, property_value):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+			"Content-Type" : "application/json",
+		}
+		page = self.post(url = 'relationship/' + str(rel_id) + '/properties/' + str(property_name), data = property_value, headers = headers)
+		return json.loads(page)
+
+	#get all relationships
+	def get_all_rels(self, node_id):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+		}
+		page = self.get(url = 'node/' + str(node_id) + '/relationships/all', headers = headers)
+		return json.loads(page)
+
+	#get incoming relationships
+	def get_rel_in(self, node_id):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+		}
+		page = self.get(url = 'node/' + str(node_id) + '/relationships/in', headers = headers)
+		return json.loads(page)
+
+	#get outgoing relationships
+	def get_rel_out(self, node_id):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+		}
+		page = self.get(url = 'node/' + str(node_id) + '/relationships/out', headers = headers)
+		return json.loads(page)
