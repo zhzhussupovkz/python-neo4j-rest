@@ -201,3 +201,11 @@ class Neo4jRestAPI:
 		}
 		page = self.get(url = 'node/' + str(node_id) + '/relationships/out', headers = headers)
 		return json.loads(page)
+
+	#get relationships types
+	def get_rel_types(self, node_id):
+		headers = {
+			"Accept" : "application/json; charset=UTF-8",
+		}
+		page = self.get(url = 'node/' + str(node_id) + '/relationships/types', headers = headers)
+		return json.loads(page)
